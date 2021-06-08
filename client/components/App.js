@@ -1,7 +1,11 @@
 import React from 'react'
+import { AllCoins, ProductsInfo } from './index.js'
 
 const App = () => (
-  <h1>In App component TEST</h1>
+  <div className='app'>
+    <AllCoins />
+    <ProductsInfo />
+  </div>
 )
 
 export default App

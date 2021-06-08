@@ -1,0 +1,6 @@
+export { default as AllCoins } from './AllCoins'
+export { default as AllProducts } from './AllProducts'
+export { default as Order } from './Order'
+export { default as ProductsInfo } from './ProductsInfo'
+export { default as Product } from './Product'
+export { default as Coin } from './Coin'
