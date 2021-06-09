@@ -1,63 +1,90 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
 import { Coin } from './index.js'
-import initialState from '../store/reducer'
-import { countSumCoins } from '../helper_functions'
+import {
+  setCoinsInput,
+  setTotalCentsMachine,
+  setCoinsInputSum
+} from '../store/actions'
+import { totalCentsMachine, totalCentsInserted } from '../helper_functions'
 
-const coinsInput = {
+let coinsInput = {
   penny: '',
   nickel: '',
   dime: '',
   quater: ''
 }
 
-class AllCoins extends Component {
+class AllCoinsDisconected extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      coinsInput,
-      sumCoins: 0
-    }
+    this.state = coinsInput
     this.handleCoinsChange = this.handleCoinsChange.bind(this)
   }
 
+  componentDidMount() {
+    const { setTotalCents, allCoinsMachine } = this.props
+    let cents = totalCentsMachine(allCoinsMachine)
+    setTotalCents(cents)
+  }
+
+  componentDidUpdate() {
+    const { setCoins, allCoinsMachine, setInputSum } = this.props
+    let inputSum = totalCentsInserted(this.state)
+
+    setCoins(allCoinsMachine)
+
+    // console.log("InputSum ", inputSum)
+    setInputSum(inputSum)
+
+    console.log("ComponentDidUpdate")
+  }
+
   handleCoinsChange(event) {
-    this.setState(state => {
-      // extract key/value pairs from input
-      const newKey = event.target.name.toLowerCase()
-      const newValue = event.target.value
-      // create object of coins inserted
-      const newCoinsInput = { ...state.coinsInput, [newKey]: newValue }
-      //utilize helper function to calculate all coins inserted in cents
-      const newSumCoins = countSumCoins(newCoinsInput)
-      // return new state with updated properties
-      return { ...state, coinsInput: newCoinsInput, sumCoins: newSumCoins }
-    })
+    const newKey = event.target.name.toLowerCase()
+    const newValue = event.target.value
+    this.setState({ [newKey]: newValue })
   }
 
   render() {
-    const { allCoins, totalCents } = initialState
-    const { sumCoins } = this.state
+    // const { totalCentsMachine } = initialState
+    // const { coinsInputSum } = this.state
+    const { allCoinsMachine, totalCentsMachine, coinsInputSum } = this.props
 
     return (
       <Fragment>
         <h2>COINS INFORMATION</h2>
         <div className='coins-container'>
-          <h3>CENTS<span className='total-cents'>{totalCents}</span></h3>
+          <h2>CENTS<span className='total-cents'>{totalCentsMachine}</span></h2>
           <div className='all-coins'>
-            {allCoins.map(coin =>
+            {allCoinsMachine.map(coin =>
               <Coin
                 key={coin.idValue}
                 {...coin}
-                coinsInput={this.state.coinsInput}
+                coinsInput={this.state}
                 handleChange={this.handleCoinsChange}
               />
             )}
           </div>
-          <h3>Amount Inserted<span className='total-cents'>{sumCoins}</span></h3>
+          <h3>Amount Inserted<span className='total-cents'>{coinsInputSum}</span></h3>
         </div>
       </Fragment>
     )
   }
 }
 
+const mapStateToProps = state => ({
+  allCoinsMachine: state.allCoinsMachine,
+  totalCentsMachine: state.totalCentsMachine,
+  coinsInputSum: state.coinsInputSum
+
+})
+
+const mapDispatchToProps = dispatch => ({
+  setTotalCents: centsNum => dispatch(setTotalCentsMachine(centsNum)),
+  setCoins: coinsObj => dispatch(setCoinsInput(coinsObj)),
+  setInputSum: sumNum => dispatch(setCoinsInputSum(sumNum))
+})
+
+const AllCoins = connect(mapStateToProps, mapDispatchToProps)(AllCoinsDisconected)
 export default AllCoins
