@@ -4,7 +4,7 @@ const Coin = ({ name, quantity, coinsInput, handleChange }) => {
 
   return (
     <div className='coin'>
-      <h3>{name}: {quantity}</h3>
+      <h2>{name}: {quantity}</h2>
       <input
         name={name.toLowerCase()}
         value={coinsInput[name.toLowerCase()]}
