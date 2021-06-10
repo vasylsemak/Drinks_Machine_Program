@@ -1,11 +1,14 @@
+// ACTION TYPES
 const actionTypes = {
   SET_CENTS_MACHINE: 'SET_CENTS_MACHINE',
   SET_COINS_INPUT: 'SET_COINS_INPUT',
   SET_COINS_INPUT_SUM: 'SET_COINS_INPUT_SUM',
-  // GET_TOTAL_ORDER: 'GET_TOTAL_ORDER',
-  // totalCentsMachine
+  SET_ORDER_TOTAL: 'SET_ORDER_TOTAL'
 }
 
+// ACTION CREATORS
+
+// coins container
 export const setTotalCentsMachine = centsNum => ({
   type: actionTypes.SET_CENTS_MACHINE,
   totalCentsMachine: centsNum,
@@ -21,9 +24,11 @@ export const setCoinsInputSum = sumNum => ({
   coinsInputSum: sumNum
 })
 
-// export const getTotalOrder = totalCentsOrder => ({
-//   type: actionTypes.GET_TOTAL_ORDER,
-//   totalCentsOrder
-// })
+// products container
+export const setOrderTotal = sumNum => ({
+  type: actionTypes.SET_ORDER_TOTAL,
+  orderTotalCents: sumNum
+})
+
 
 export default actionTypes
