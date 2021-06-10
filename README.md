@@ -1,4 +1,4 @@
-# Drinks Machine Program (## GreenSlate Coding Challenge)
+# Drinks Machine Program (GreenSlate Coding Challenge)
 
 ## Attn GreenSlate engineering team!
 
@@ -11,14 +11,14 @@ I would appreciate 1 or 2 extra days to complete an assessment.
 
 <p align="center">
   <img alt="p1" src="public/images/photo-1.png" width="400" />
-  <img alt="p2" src="src/images/photo-2.png" width="400" />
+  <img alt="p2" src="public/images/photo-2.png" width="400" />
 </p>
 <p align="center">
-  <img alt="p3" src="src/images/photo-3.png" width="400" />
-  <img alt="p4" src="src/images/photo-4.png" width="400" />
+  <img alt="p3" src="public/images/photo-3.png" width="400" />
+  <img alt="p4" src="public/images/photo-4.png" width="400" />
 </p>
 <p align="center">
-  <img alt="p5" src="src/images/photo-5.png" width="400" />
+  <img alt="p5" src="public/images/photo-5.png" width="400" />
 </p>
 
 ## Setup
