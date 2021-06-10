@@ -9,7 +9,3 @@
     }]
   ]
 }
-
-// {
-//   "presets": ["env", "react", "stage-3"]
-// }

@@ -1,3 +1,33 @@
+// f-n counts total amount in machine in cents
+export function totalCentsMachine(coinsArr) {
+  return coinsArr.reduce((sum, coin) => {
+    sum = sum + (coin.quantity * coin.idValue)
+    return sum
+  }, 0)
+}
+
+// f-n counts order total
+export function findOrderTotal(productsArr, orderObj) {
+  const priceObj = {}
+  let orderTotal = 0
+
+  // create price map
+  productsArr.forEach(p => {
+    const key = p.name.toLowerCase().toLowerCase()
+    const val = p.cost
+    priceObj[key] = val
+  })
+
+  // add up total
+  for(let key in orderObj) {
+    let price = priceObj[key]
+    let quantity = orderObj[key]
+    orderTotal += (price * quantity)
+  }
+
+  return orderTotal
+}
+
 // f-n counts total inserted in cash
 export function totalCentsInserted(anObj) {
   return Object.entries(anObj)
@@ -12,12 +42,4 @@ export function totalCentsInserted(anObj) {
       else if(e[0] === 'quater') return sum + (e[1] * 25)
       else return sum
     }, 0)
-}
-
-// f-n counts total amount in machine in cents
-export function totalCentsMachine(coinsArr) {
-  return coinsArr.reduce((sum, coin) => {
-    sum = sum + (coin.quantity * coin.idValue)
-    return sum
-  }, 0)
 }

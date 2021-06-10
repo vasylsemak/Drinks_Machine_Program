@@ -19,6 +19,9 @@ body {
 .product-input {
   width: 5rem;
   height: 2rem;
+  color: rgb(80, 80, 80);
+  font-size: 1.2rem;
+  text-align: center;
 }
 
 /* ------------- COINS Section  --------------------------------------------- */
@@ -27,8 +30,10 @@ body {
   padding: 2rem;
 }
 .total-cents {
-  margin-left: 2%;
   display: inline;
+  color: rgb(23, 23, 185);
+  margin-left: 2%;
+  font-size: 1.5rem;
 }
 .all-coins {
   display: flex;
@@ -42,6 +47,9 @@ body {
   flex-direction: column;
   align-items: center;
   margin: 0.5rem;
+}
+.coin h2 {
+  color: rgb(80, 80, 80);
 }
 
 /* ------------- PRODUCT Section  ------------------------------------------- */
@@ -64,4 +72,11 @@ body {
 }
 .product-details p:last-child {
   margin-left: 1.2rem;
+}
+
+.order-total {
+  font-size: 1.8rem;
+  color: rgb(211, 41, 41);
+  padding-left: 1rem;
+  padding-right: 0.5rem;
 }

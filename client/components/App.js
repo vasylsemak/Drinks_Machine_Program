@@ -4,7 +4,7 @@ import { AllCoins, ProductsInfo } from './index.js'
 const App = () => (
   <div className='app'>
     <AllCoins />
-    {/* <ProductsInfo /> */}
+    <ProductsInfo />
   </div>
 )
 

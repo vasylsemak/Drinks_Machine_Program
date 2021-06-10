@@ -1,14 +1,15 @@
 import React from 'react'
-import { initialState } from '../store/reducer'
-const { totalCentsOrder } = initialState
+import { useSelector } from 'react-redux'
 
-// console.log('actionTypes ', actionTypes)
+const Order = () => {
+  const orderTotal = useSelector(state => state.orderTotalCents)
 
-const Order = () => (
-  <div className='order'>
-    <h4>ORDER TOTAL:  {totalCentsOrder} cents</h4>
-    <button>GET DRINKS</button>
-  </div>
-)
+  return (
+    <div className='order'>
+      <h2>ORDER TOTAL:<span className='order-total'>{orderTotal}</span>cents</h2>
+      <button>GET DRINKS</button>
+    </div>
+  )
+}
 
 export default Order

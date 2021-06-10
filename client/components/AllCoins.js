@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Coin } from './index.js'
+import { totalCentsMachine, totalCentsInserted } from '../helper_functions'
 import {
   setCoinsInput,
   setTotalCentsMachine,
   setCoinsInputSum
 } from '../store/actions'
-import { totalCentsMachine, totalCentsInserted } from '../helper_functions'
+
 
 let coinsInput = {
   penny: '',
@@ -33,11 +34,7 @@ class AllCoinsDisconected extends Component {
     let inputSum = totalCentsInserted(this.state)
 
     setCoins(allCoinsMachine)
-
-    // console.log("InputSum ", inputSum)
     setInputSum(inputSum)
-
-    console.log("ComponentDidUpdate")
   }
 
   handleCoinsChange(event) {
@@ -47,8 +44,6 @@ class AllCoinsDisconected extends Component {
   }
 
   render() {
-    // const { totalCentsMachine } = initialState
-    // const { coinsInputSum } = this.state
     const { allCoinsMachine, totalCentsMachine, coinsInputSum } = this.props
 
     return (

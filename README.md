@@ -1,6 +1,25 @@
-# Drinks Machine Program
+# Drinks Machine Program (## GreenSlate Coding Challenge)
 
-## GreenSlate Coding Challenge
+## Attn GreenSlate engineering team!
+
+<p>
+Thank you for giving me an opportunity to participate in this coding challenge.<br />
+However, I have not implemented some assessment requirements due to a lack of time.<br />
+I had part-time work to do.<br />
+I would appreciate 1 or 2 extra days to complete an assessment.
+</p>
+
+<p align="center">
+  <img alt="p1" src="public/images/photo-1.png" width="400" />
+  <img alt="p2" src="src/images/photo-2.png" width="400" />
+</p>
+<p align="center">
+  <img alt="p3" src="src/images/photo-3.png" width="400" />
+  <img alt="p4" src="src/images/photo-4.png" width="400" />
+</p>
+<p align="center">
+  <img alt="p5" src="src/images/photo-5.png" width="400" />
+</p>
 
 ## Setup
 
