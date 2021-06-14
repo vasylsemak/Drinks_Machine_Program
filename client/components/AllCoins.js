@@ -40,6 +40,11 @@ class AllCoinsDisconected extends Component {
   handleCoinsChange(event) {
     const newKey = event.target.name.toLowerCase()
     const newValue = event.target.value
+    // Validate that the input for each coin type is not negative
+    if(!parseInt(newValue)) {
+      alert('Please insert 1 or more coins!')
+      return
+    }
     this.setState({ [newKey]: newValue })
   }
 
