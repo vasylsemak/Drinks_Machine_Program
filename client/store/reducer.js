@@ -12,7 +12,7 @@ export const initialState = {
   //purchase
   productsOrder: {},
   orderTotalCents: 0,
-  isOrderClicked: false,
+  showModal: false,
   changeCents: 0
 }
 
@@ -30,8 +30,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, productsOrder: action.orderObj}
     case actionTypes.SET_ORDER_TOTAL:
       return { ...state, orderTotalCents: action.orderTotalCents }
-    case actionTypes.SET_ORDER_CLICKED:
-      return { ...state, isOrderClicked: !action.clicked}
+    case actionTypes.SET_SHOW_MODAL:
+      return { ...state, showModal: !action.show }
     case actionTypes.SET_CHANGE_CENTS:
       return { ...state, changeCents: action.centsNum}
     default:

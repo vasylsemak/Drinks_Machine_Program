@@ -5,7 +5,7 @@ const actionTypes = {
   SET_COINS_INPUT_SUM: 'SET_COINS_INPUT_SUM',
   SET_PRODUCTS_ORDER: 'SET_PRODUCTS_ORDER',
   SET_ORDER_TOTAL: 'SET_ORDER_TOTAL',
-  SET_ORDER_CLICKED: 'SET_ORDER_CLICKED',
+  SET_SHOW_MODAL: 'SET_SHOW_MODAL',
   SET_CHANGE_CENTS: 'SET_CHANGE_CENTS'
 }
 
@@ -35,9 +35,9 @@ export const setOrderTotal = sumNum => ({
   orderTotalCents: sumNum
 })
 
-export const setOrderClicked = clicked => ({
-  type: actionTypes.SET_ORDER_CLICKED,
-  clicked
+export const setShowModal = show => ({
+  type: actionTypes.SET_SHOW_MODAL,
+  show
 })
 
 export const setChangeCents = centsNum => ({

@@ -8,7 +8,6 @@ import {
   setCoinsInputSum
 } from '../store/actions'
 
-
 let coinsInput = {
   penny: '',
   nickel: '',
@@ -32,9 +31,7 @@ class AllCoinsDisconected extends Component {
   componentDidUpdate() {
     const { setCoins, setInputSum } = this.props
     const coinsInserted = this.state
-
     setCoins(coinsInserted)
-
     let inputSum = totalCentsInserted(coinsInserted)
     setInputSum(inputSum)
   }
@@ -42,7 +39,7 @@ class AllCoinsDisconected extends Component {
   handleCoinsChange(event) {
     const newKey = event.target.name.toLowerCase()
     const newValue = event.target.value
-    // Validate that the input for each coin type is not negative
+
     if(newValue < 0) {
       alert('Please insert 1 or more coins!')
       return

@@ -1,18 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import PurchaseModal from './PurchaseModal'
-import { setOrderClicked, setChangeCents } from '../store/actions'
+import { PurchaseModal } from './index.js'
+import { setShowModal, setChangeCents } from '../store/actions'
 
 
 const OrderDisconected = props => {
-  // State
   const {
     coinsInputSum,
     orderTotalCents,
-    isOrderClicked,
+    showModal,
   } = props.allState
-  // Actions
-  const { setOrderClicked, setChangeCents } = props
+  const { toggleShowModal, changeCents } = props
 
   function handleClick(evt) {
     evt.preventDefault()
@@ -22,18 +20,13 @@ const OrderDisconected = props => {
       alert('Your balance is low! Please add more coins')
       return
     }
-
     // find if any change has to be released
     let change = coinsInputSum - orderTotalCents
-    if(change) {
-      setChangeCents(change)
-    }
-
+    if(change) changeCents(change)
     // activate
-    setOrderClicked(isOrderClicked)
+    toggleShowModal(showModal)
   }
 
-  // console.log('AllState', props.allState)
   return (
     <div className='order'>
       <PurchaseModal />
@@ -47,14 +40,14 @@ const OrderDisconected = props => {
   )
 }
 
-const mapStateToProps = state => ({
-  allState: state
-})
+const mapStateToProps = state => ({ allState: state })
 
 const mapDispatchToProps = dispatch => ({
-  setOrderClicked: drinks => dispatch(setOrderClicked(drinks)),
-  setChangeCents: centsNum => dispatch(setChangeCents(centsNum))
+  toggleShowModal: show => dispatch(setShowModal(show)),
+  changeCents: centsNum => dispatch(setChangeCents(centsNum))
 })
 
-const Order = connect(mapStateToProps, mapDispatchToProps)(OrderDisconected)
+const Order =
+  connect(mapStateToProps, mapDispatchToProps)(OrderDisconected)
+
 export default Order
