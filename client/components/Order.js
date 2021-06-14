@@ -1,36 +1,42 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setOrderClicked } from '../store/actions'
+import PurchaseModal from './PurchaseModal'
+import { setOrderClicked, setChangeCents } from '../store/actions'
 
 
 const OrderDisconected = props => {
   // State
   const {
-    totalCentsMachine,
     coinsInputSum,
     orderTotalCents,
-    isOrderClicked
+    isOrderClicked,
   } = props.allState
   // Actions
-  const { setOrderClicked } = props
+  const { setOrderClicked, setChangeCents } = props
 
   function handleClick(evt) {
     evt.preventDefault()
 
-    // set isOrderClicked top false
-    setOrderClicked(isOrderClicked)
-
     // check if enough money inserted
     if(coinsInputSum < orderTotalCents) {
-      alert('Your balance is low!')
+      alert('Your balance is low! Please add more coins')
       return
     }
+
+    // find if any change has to be released
+    let change = coinsInputSum - orderTotalCents
+    if(change) {
+      setChangeCents(change)
+    }
+
+    // activate
+    setOrderClicked(isOrderClicked)
   }
 
   // console.log('AllState', props.allState)
-
   return (
     <div className='order'>
+      <PurchaseModal />
       <h2>ORDER TOTAL:<span className='order-total'>{orderTotalCents}</span>cents</h2>
       <button
         disabled={!orderTotalCents}
@@ -46,7 +52,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  setOrderClicked: drinks => dispatch(setOrderClicked(drinks))
+  setOrderClicked: drinks => dispatch(setOrderClicked(drinks)),
+  setChangeCents: centsNum => dispatch(setChangeCents(centsNum))
 })
 
 const Order = connect(mapStateToProps, mapDispatchToProps)(OrderDisconected)

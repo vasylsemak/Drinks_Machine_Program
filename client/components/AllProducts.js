@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Product } from './index'
 import {  findOrderTotal } from '../helper_functions'
-import { setOrderTotal } from '../store/actions'
+import { setPorductsOrder , setOrderTotal } from '../store/actions'
 
 class AllProductsDisconected extends Component {
   constructor(props) {
@@ -12,11 +12,11 @@ class AllProductsDisconected extends Component {
   }
 
   componentDidUpdate() {
-    const { products, setOrderSum } = this.props
+    const { products, setOrder, setOrderSum } = this.props
     const orderObj = this.state
-    //calculate order total with helper f-n
+
+    setOrder(orderObj)
     const orderCalculatedSum = findOrderTotal(products, orderObj)
-    // set orderTotalCents on redux state
     setOrderSum(orderCalculatedSum)
   }
 
@@ -48,6 +48,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+  setOrder: orderObj => dispatch(setPorductsOrder(orderObj)),
   setOrderSum: sumNum => dispatch(setOrderTotal(sumNum))
 })
 

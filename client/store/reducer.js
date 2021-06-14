@@ -9,8 +9,11 @@ export const initialState = {
   coinsInputSum: 0,
   // products
   products,
+  //purchase
+  productsOrder: {},
   orderTotalCents: 0,
   isOrderClicked: false,
+  changeCents: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -22,12 +25,15 @@ const reducer = (state = initialState, action) => {
       return { ...state, coinsInput: action.coinsInput }
     case actionTypes.SET_COINS_INPUT_SUM:
       return { ...state, coinsInputSum: action.coinsInputSum }
-    //products
+    // purchase
+    case actionTypes.SET_PRODUCTS_ORDER:
+      return { ...state, productsOrder: action.orderObj}
     case actionTypes.SET_ORDER_TOTAL:
       return { ...state, orderTotalCents: action.orderTotalCents }
-    // click GET DRINKS
     case actionTypes.SET_ORDER_CLICKED:
       return { ...state, isOrderClicked: !action.clicked}
+    case actionTypes.SET_CHANGE_CENTS:
+      return { ...state, changeCents: action.centsNum}
     default:
       return state
   }
