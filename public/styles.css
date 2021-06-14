@@ -74,9 +74,26 @@ body {
   margin-left: 1.2rem;
 }
 
+.order h2 {
+  margin-top: 20%;
+}
+
 .order-total {
   font-size: 1.8rem;
   color: rgb(211, 41, 41);
   padding-left: 1rem;
   padding-right: 0.5rem;
+}
+
+.btn-get-drinks {
+  padding: 1rem;
+  margin-top: 20%;
+  border-radius: 0.4rem;
+  font-size: 1.8rem;
+  color: white;
+  background-color: rgb(80, 80, 80);
+}
+.btn-get-drinks:hover {
+  background-color: rgb(189, 186, 186);
+  color: rgb(80, 80, 80);
 }

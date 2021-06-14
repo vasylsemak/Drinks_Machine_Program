@@ -5,9 +5,10 @@ const Coin = ({ name, quantity, coinsInput, handleChange }) => {
     <div className='coin'>
       <h2>{name}: {quantity}</h2>
       <input
+        type='number'
         name={name.toLowerCase()}
         value={coinsInput[name.toLowerCase()]}
-        placeholder='quantity'
+        placeholder='0'
         onChange={handleChange}
       />
     </div>

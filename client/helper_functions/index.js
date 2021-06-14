@@ -10,14 +10,12 @@ export function totalCentsMachine(coinsArr) {
 export function findOrderTotal(productsArr, orderObj) {
   const priceObj = {}
   let orderTotal = 0
-
   // create price map
   productsArr.forEach(p => {
     const key = p.name.toLowerCase().toLowerCase()
     const val = p.cost
     priceObj[key] = val
   })
-
   // add up total
   for(let key in orderObj) {
     let price = priceObj[key]
@@ -42,4 +40,9 @@ export function totalCentsInserted(anObj) {
       else if(e[0] === 'quater') return sum + (e[1] * 25)
       else return sum
     }, 0)
+}
+
+// f-n counts total drinks in the machine
+export function totalDrinksInMachine(productsArr) {
+  return productsArr.reduce((accum, product) => (accum + product.quantityAvailable), 0)
 }

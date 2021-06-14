@@ -10,6 +10,7 @@ export const initialState = {
   // products
   products,
   orderTotalCents: 0,
+  isOrderClicked: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -23,7 +24,10 @@ const reducer = (state = initialState, action) => {
       return { ...state, coinsInputSum: action.coinsInputSum }
     //products
     case actionTypes.SET_ORDER_TOTAL:
-      return { ...state, orderTotalCents: action.orderTotalCents  }
+      return { ...state, orderTotalCents: action.orderTotalCents }
+    // click GET DRINKS
+    case actionTypes.SET_ORDER_CLICKED:
+      return { ...state, isOrderClicked: !action.clicked}
     default:
       return state
   }

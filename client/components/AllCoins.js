@@ -30,16 +30,23 @@ class AllCoinsDisconected extends Component {
   }
 
   componentDidUpdate() {
-    const { setCoins, allCoinsMachine, setInputSum } = this.props
-    let inputSum = totalCentsInserted(this.state)
+    const { setCoins, setInputSum } = this.props
+    const coinsInserted = this.state
 
-    setCoins(allCoinsMachine)
+    setCoins(coinsInserted)
+
+    let inputSum = totalCentsInserted(coinsInserted)
     setInputSum(inputSum)
   }
 
   handleCoinsChange(event) {
     const newKey = event.target.name.toLowerCase()
     const newValue = event.target.value
+    // Validate that the input for each coin type is not negative
+    if(newValue < 0) {
+      alert('Please insert 1 or more coins!')
+      return
+    }
     this.setState({ [newKey]: newValue })
   }
 
