@@ -1,12 +1,20 @@
 import { coins, products } from '../../server/data'
 import actionTypes from './actions'
+import { totalCentsInserted } from '../helper_functions'
+
+const clearedCoinsInput = {
+  penny: '',
+  nickel: '',
+  dime: '',
+  quater: '',
+  coinsInputSum: 0,
+}
 
 export const initialState = {
   // coins
   allCoinsMachine: coins,
   totalCentsMachine: 0,
-  coinsInput: {},
-  coinsInputSum: 0,
+  coinsInput: clearedCoinsInput,
   // products
   products,
   //purchase
@@ -23,10 +31,17 @@ const reducer = (state = initialState, action) => {
       return { ...state,  totalCentsMachine: action.totalCentsMachine}
 
     case actionTypes.SET_COINS_INPUT:
-      return { ...state, coinsInput: action.coinsInput }
+      // update coinsInput key/val
+      const [ newKey, newVal ] = action.coinsInput
+      const currInput = state.coinsInput
+      const newInput = { ...currInput, [newKey]: newVal }
+      // update coinsInputSum
+      const newSum = totalCentsInserted(newInput)
+      const updatedSumInput = { ...newInput, coinsInputSum: newSum }
+      return { ...state, coinsInput: updatedSumInput }
 
-    case actionTypes.SET_COINS_INPUT_SUM:
-      return { ...state, coinsInputSum: action.coinsInputSum }
+    case actionTypes.CLEAR_COINS_INPUT:
+      return { ...state, coinsInput: clearedCoinsInput }
 
     // purchase
     case actionTypes.SET_PRODUCTS_ORDER:
@@ -34,7 +49,6 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.UPDATE_PRODUCTS:
       const orderObj = action.orderObj;
-
       const updatedProducts = state.products.map(product => {
         const name = product.name.toLowerCase()
 
@@ -45,7 +59,6 @@ const reducer = (state = initialState, action) => {
           return product
         }
       })
-
       return { ...state, products: updatedProducts }
 
     case actionTypes.SET_ORDER_TOTAL:

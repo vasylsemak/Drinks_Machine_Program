@@ -6,10 +6,11 @@ import { setShowModal, setChangeCents } from '../store/actions'
 
 const OrderDisconected = props => {
   const {
-    coinsInputSum,
+    coinsInput,
     orderTotalCents,
     showModal,
   } = props.allState
+  const { coinsInputSum } = coinsInput
   const { toggleShowModal, changeCents } = props
 
   function handleClick(evt) {

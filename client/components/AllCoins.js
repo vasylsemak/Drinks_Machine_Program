@@ -1,24 +1,17 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Coin } from './index.js'
-import { totalCentsMachine, totalCentsInserted } from '../helper_functions'
+import { totalCentsMachine } from '../helper_functions'
 import {
   setCoinsInput,
   setTotalCentsMachine,
   setCoinsInputSum
 } from '../store/actions'
 
-let coinsInput = {
-  penny: '',
-  nickel: '',
-  dime: '',
-  quater: ''
-}
-
 class AllCoinsDisconected extends Component {
   constructor(props) {
     super(props)
-    this.state = coinsInput
+    this.state = {}
     this.handleCoinsChange = this.handleCoinsChange.bind(this)
   }
 
@@ -26,14 +19,6 @@ class AllCoinsDisconected extends Component {
     const { setTotalCents, allCoinsMachine } = this.props
     let cents = totalCentsMachine(allCoinsMachine)
     setTotalCents(cents)
-  }
-
-  componentDidUpdate() {
-    const { setCoins, setInputSum } = this.props
-    const coinsInserted = this.state
-    setCoins(coinsInserted)
-    let inputSum = totalCentsInserted(coinsInserted)
-    setInputSum(inputSum)
   }
 
   handleCoinsChange(event) {
@@ -44,11 +29,13 @@ class AllCoinsDisconected extends Component {
       alert('Please insert 1 or more coins!')
       return
     }
-    this.setState({ [newKey]: newValue })
+
+    const { setCoinsInput } = this.props
+    setCoinsInput([ newKey, newValue ])
   }
 
   render() {
-    const { allCoinsMachine, totalCentsMachine, coinsInputSum } = this.props
+    const { allCoinsMachine, totalCentsMachine, coinsInput } = this.props
 
     return (
       <Fragment>
@@ -60,12 +47,14 @@ class AllCoinsDisconected extends Component {
               <Coin
                 key={coin.idValue}
                 {...coin}
-                coinsInput={this.state}
+                coinsInput={coinsInput}
                 handleChange={this.handleCoinsChange}
               />
             )}
           </div>
-          <h3>Amount Inserted<span className='total-cents'>{coinsInputSum}</span></h3>
+          <h3>Amount Inserted<span className='total-cents'>
+            {coinsInput.coinsInputSum}
+          </span></h3>
         </div>
       </Fragment>
     )
@@ -75,14 +64,12 @@ class AllCoinsDisconected extends Component {
 const mapStateToProps = state => ({
   allCoinsMachine: state.allCoinsMachine,
   totalCentsMachine: state.totalCentsMachine,
-  coinsInputSum: state.coinsInputSum
-
+  coinsInput: state.coinsInput,
 })
 
 const mapDispatchToProps = dispatch => ({
   setTotalCents: centsNum => dispatch(setTotalCentsMachine(centsNum)),
-  setCoins: coinsObj => dispatch(setCoinsInput(coinsObj)),
-  setInputSum: sumNum => dispatch(setCoinsInputSum(sumNum))
+  setCoinsInput: coinsObj => dispatch(setCoinsInput(coinsObj)),
 })
 
 const AllCoins = connect(mapStateToProps, mapDispatchToProps)(AllCoinsDisconected)

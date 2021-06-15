@@ -1,15 +1,29 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setShowModal, updateProducts } from '../store/actions'
+import {
+  clearCoinsInput,
+  setTotalCentsMachine,
+  updateProducts,
+  setOrderTotal,
+  setShowModal
+} from '../store/actions'
 
 const PurchaseModalDisconected = props => {
   const {
+    totalCentsMachine,
     productsOrder,
     orderTotalCents,
     showModal,
     changeCents
   } = props.allState
-  const { toggleShowModal, updateProducts } = props
+
+  const {
+    setTotalCents,
+    clearCoinsInput,
+    updateProducts,
+    setOrderTotal,
+    toggleShowModal
+  } = props
 
   const productsArr = Object.entries(productsOrder)
 
@@ -20,6 +34,10 @@ const PurchaseModalDisconected = props => {
   const handleSubmit = () => {
     toggleShowModal(showModal)
     updateProducts(productsOrder)
+    setTotalCents(totalCentsMachine + orderTotalCents)
+    // clear all inputs
+    clearCoinsInput()
+    // setOrderTotal(0)
   }
 
   return (
@@ -44,8 +62,11 @@ const PurchaseModalDisconected = props => {
 const mapStateToProps = state => ({ allState: state })
 
 const mapDispatchToProps = dispatch => ({
-  toggleShowModal: show => dispatch(setShowModal(show)),
-  updateProducts: orderObj => dispatch(updateProducts(orderObj))
+  setTotalCents: centsNum => dispatch(setTotalCentsMachine(centsNum)),
+  clearCoinsInput: () => dispatch(clearCoinsInput()),
+  updateProducts: orderObj => dispatch(updateProducts(orderObj)),
+  setOrderTotal: sumNum => dispatch(setOrderTotal(sumNum)),
+  toggleShowModal: show => dispatch(setShowModal(show))
 })
 
 const PurchaseModal =

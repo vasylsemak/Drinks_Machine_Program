@@ -2,7 +2,7 @@
 const actionTypes = {
   SET_CENTS_MACHINE: 'SET_CENTS_MACHINE',
   SET_COINS_INPUT: 'SET_COINS_INPUT',
-  SET_COINS_INPUT_SUM: 'SET_COINS_INPUT_SUM',
+  CLEAR_COINS_INPUT: 'CLEAR_COINS_INPUT',
   SET_PRODUCTS_ORDER: 'SET_PRODUCTS_ORDER',
   UPDATE_PRODUCTS: 'UPDATE_PRODUCTS',
   SET_ORDER_TOTAL: 'SET_ORDER_TOTAL',
@@ -16,14 +16,13 @@ export const setTotalCentsMachine = centsNum => ({
   totalCentsMachine: centsNum,
 })
 
-export const setCoinsInput = coinsObj => ({
+export const setCoinsInput = coinsArr => ({
   type: actionTypes.SET_COINS_INPUT,
-  coinsInput: coinsObj
+  coinsInput: coinsArr
 })
 
-export const setCoinsInputSum = sumNum => ({
-  type: actionTypes.SET_COINS_INPUT_SUM,
-  coinsInputSum: sumNum
+export const clearCoinsInput = () => ({
+  type: actionTypes.CLEAR_COINS_INPUT,
 })
 
 export const setPorductsOrder = orderObj => ({
