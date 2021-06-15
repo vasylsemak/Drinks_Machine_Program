@@ -2,11 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Coin } from './index.js'
 import { totalCentsMachine } from '../helper_functions'
-import {
-  setCoinsInput,
-  setTotalCentsMachine,
-  setCoinsInputSum
-} from '../store/actions'
+import { setCoinsInput, setTotalCentsMachine } from '../store/actions'
 
 class AllCoinsDisconected extends Component {
   constructor(props) {

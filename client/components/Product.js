@@ -11,9 +11,10 @@ const Product = ({ name, cost, quantityAvailable, handleChange }) => (
     </div>
     <input
       className='product-input'
-      name={name}
+      name={name.toLowerCase()}
       type='number'
       min='0' max={quantityAvailable} step='1'
+      placeholder='0'
       onChange={handleChange}
       disabled={!quantityAvailable}
     />

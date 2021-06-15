@@ -5,7 +5,6 @@ const actionTypes = {
   CLEAR_COINS_INPUT: 'CLEAR_COINS_INPUT',
   SET_PRODUCTS_ORDER: 'SET_PRODUCTS_ORDER',
   UPDATE_PRODUCTS: 'UPDATE_PRODUCTS',
-  SET_ORDER_TOTAL: 'SET_ORDER_TOTAL',
   SET_SHOW_MODAL: 'SET_SHOW_MODAL',
   SET_CHANGE_CENTS: 'SET_CHANGE_CENTS'
 }
@@ -25,19 +24,14 @@ export const clearCoinsInput = () => ({
   type: actionTypes.CLEAR_COINS_INPUT,
 })
 
-export const setPorductsOrder = orderObj => ({
+export const setProductsOrder = orderArr => ({
   type: actionTypes.SET_PRODUCTS_ORDER,
-  orderObj
+  orderArr
 })
 
 export const updateProducts = orderObj => ({
   type: actionTypes.UPDATE_PRODUCTS,
   orderObj
-})
-
-export const setOrderTotal = sumNum => ({
-  type: actionTypes.SET_ORDER_TOTAL,
-  orderTotalCents: sumNum
 })
 
 export const setShowModal = show => ({

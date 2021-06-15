@@ -1,6 +1,6 @@
 import { coins, products } from '../../server/data'
 import actionTypes from './actions'
-import { totalCentsInserted } from '../helper_functions'
+import { totalCentsInserted, findOrderTotal } from '../helper_functions'
 
 const clearedCoinsInput = {
   penny: '',
@@ -15,11 +15,11 @@ export const initialState = {
   allCoinsMachine: coins,
   totalCentsMachine: 0,
   coinsInput: clearedCoinsInput,
-  // products
   products,
   //purchase
-  productsOrder: {},
-  orderTotalCents: 0,
+  productsOrder: {
+    orderTotalCents: 0,
+  },
   showModal: false,
   changeCents: 0
 }
@@ -38,6 +38,7 @@ const reducer = (state = initialState, action) => {
       // update coinsInputSum
       const newSum = totalCentsInserted(newInput)
       const updatedSumInput = { ...newInput, coinsInputSum: newSum }
+
       return { ...state, coinsInput: updatedSumInput }
 
     case actionTypes.CLEAR_COINS_INPUT:
@@ -45,7 +46,18 @@ const reducer = (state = initialState, action) => {
 
     // purchase
     case actionTypes.SET_PRODUCTS_ORDER:
-      return { ...state, productsOrder: action.orderObj}
+      // update productsOrder key/val
+      const newOrderObj = { ...state.productsOrder }
+      const [ productName, productVal ] = action.orderArr
+      newOrderObj[productName] = productVal
+      // update orderTotalCents
+      const orderTotalCalculated = findOrderTotal(state.products, newOrderObj)
+      const updatedOrderObj = {
+        ...newOrderObj,
+        orderTotalCents: orderTotalCalculated
+      }
+
+      return { ...state, productsOrder: updatedOrderObj }
 
     case actionTypes.UPDATE_PRODUCTS:
       const orderObj = action.orderObj;
@@ -59,10 +71,8 @@ const reducer = (state = initialState, action) => {
           return product
         }
       })
-      return { ...state, products: updatedProducts }
 
-    case actionTypes.SET_ORDER_TOTAL:
-      return { ...state, orderTotalCents: action.orderTotalCents }
+      return { ...state, products: updatedProducts }
 
     case actionTypes.SET_SHOW_MODAL:
       return { ...state, showModal: !action.show }

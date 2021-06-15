@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Product } from './index'
-import {  findOrderTotal } from '../helper_functions'
-import { setPorductsOrder , setOrderTotal } from '../store/actions'
+import { setProductsOrder } from '../store/actions'
 
 class AllProductsDisconected extends Component {
   constructor(props) {
@@ -11,19 +10,12 @@ class AllProductsDisconected extends Component {
     this.handleQuantityChange = this.handleQuantityChange.bind(this)
   }
 
-  componentDidUpdate() {
-    const { products, setOrder, setOrderSum } = this.props
-    const orderObj = this.state
-
-    setOrder(orderObj)
-    const orderCalculatedSum = findOrderTotal(products, orderObj)
-    setOrderSum(orderCalculatedSum)
-  }
-
   handleQuantityChange(e) {
     const pName = e.target.name.toLowerCase()
     const pValue = parseInt(e.target.value)
-    this.setState({ [pName]: pValue })
+    console.log('pName ', pName)
+
+    this.props.setOrder([ pName, pValue ])
   }
 
   render() {
@@ -43,13 +35,10 @@ class AllProductsDisconected extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  products: state.products
-})
+const mapStateToProps = state => ({ products: state.products })
 
 const mapDispatchToProps = dispatch => ({
-  setOrder: orderObj => dispatch(setPorductsOrder(orderObj)),
-  setOrderSum: sumNum => dispatch(setOrderTotal(sumNum))
+  setOrder: orderArr => dispatch(setProductsOrder(orderArr)),
 })
 
 const AllProducts = connect(mapStateToProps, mapDispatchToProps)

@@ -10,17 +10,21 @@ export function totalCentsMachine(coinsArr) {
 export function findOrderTotal(productsArr, orderObj) {
   const priceObj = {}
   let orderTotal = 0
+
   // create price map
   productsArr.forEach(p => {
     const key = p.name.toLowerCase().toLowerCase()
     const val = p.cost
     priceObj[key] = val
   })
+
   // add up total
   for(let key in orderObj) {
-    let price = priceObj[key]
-    let quantity = orderObj[key]
-    orderTotal += (price * quantity)
+    if(key !== 'orderTotalCents') {
+      let price = priceObj[key]
+      let quantity = orderObj[key]
+      orderTotal += (price * quantity)
+    }
   }
 
   return orderTotal
