@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setShowModal } from '../store/actions'
+import { setShowModal, updateProducts } from '../store/actions'
 
 const PurchaseModalDisconected = props => {
   const {
@@ -9,7 +9,7 @@ const PurchaseModalDisconected = props => {
     showModal,
     changeCents
   } = props.allState
-  const { toggleShowModal } = props
+  const { toggleShowModal, updateProducts } = props
 
   const productsArr = Object.entries(productsOrder)
 
@@ -19,6 +19,7 @@ const PurchaseModalDisconected = props => {
 
   const handleSubmit = () => {
     toggleShowModal(showModal)
+    updateProducts(productsOrder)
   }
 
   return (
@@ -43,7 +44,8 @@ const PurchaseModalDisconected = props => {
 const mapStateToProps = state => ({ allState: state })
 
 const mapDispatchToProps = dispatch => ({
-  toggleShowModal: show => dispatch(setShowModal(show))
+  toggleShowModal: show => dispatch(setShowModal(show)),
+  updateProducts: orderObj => dispatch(updateProducts(orderObj))
 })
 
 const PurchaseModal =
