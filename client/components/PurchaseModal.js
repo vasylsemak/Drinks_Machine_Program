@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { clearProductsOrder } from '../helper_functions'
 import {
   clearCoinsInput,
   setTotalCentsMachine,
@@ -41,8 +42,8 @@ const PurchaseModalDisconected = props => {
     // clear coins input
     clearCoinsInput()
     // clear products input
-
-    setProductsOrder([ 'coke', 0])
+    const clearedOrderObj = clearProductsOrder(productsOrder) // !!!!!
+    setProductsOrder(clearedOrderObj)
   }
 
   return (

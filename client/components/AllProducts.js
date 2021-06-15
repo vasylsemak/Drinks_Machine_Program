@@ -13,9 +13,7 @@ class AllProductsDisconected extends Component {
   handleQuantityChange(e) {
     const pName = e.target.name.toLowerCase()
     const pValue = parseInt(e.target.value)
-    console.log('pName ', pName)
-
-    this.props.setOrder([ pName, pValue ])
+    this.props.setOrder({ [pName]: pValue })
   }
 
   render() {

@@ -50,3 +50,15 @@ export function totalCentsInserted(anObj) {
 export function totalDrinksInMachine(productsArr) {
   return productsArr.reduce((accum, product) => (accum + product.quantityAvailable), 0)
 }
+
+// f-n to clear productsOrder
+export function clearProductsOrder(productsOrderObj) {
+  const objCopy = {}
+
+  for(let key in productsOrderObj) {
+    if(typeof productsOrderObj[key] === 'number') objCopy[key] = 0
+    else objCopy[key] = ''
+  }
+
+  return objCopy
+}

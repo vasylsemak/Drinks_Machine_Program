@@ -48,8 +48,13 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_PRODUCTS_ORDER:
       // update productsOrder key/val
       const newOrderObj = { ...state.productsOrder }
-      const [ productName, productVal ] = action.orderArr
-      newOrderObj[productName] = productVal
+      const inputObj = action.orderObj
+
+      for( let key in inputObj) {
+        let newVal = inputObj[key]
+        newOrderObj[key] = newVal
+      }
+
       // update orderTotalCents
       const orderTotalCalculated = findOrderTotal(state.products, newOrderObj)
       const updatedOrderObj = {

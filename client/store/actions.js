@@ -23,10 +23,10 @@ export const setCoinsInput = coinsArr => ({
 export const clearCoinsInput = () => ({
   type: actionTypes.CLEAR_COINS_INPUT,
 })
-
-export const setProductsOrder = orderArr => ({
+/////////////////////////////////////////////////
+export const setProductsOrder = orderObj => ({
   type: actionTypes.SET_PRODUCTS_ORDER,
-  orderArr
+  orderObj
 })
 
 export const updateProducts = orderObj => ({
