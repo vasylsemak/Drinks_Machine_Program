@@ -17,7 +17,7 @@ class AllProductsDisconected extends Component {
   }
 
   render() {
-    const { products } = this.props
+    const { products, productsOrder } = this.props
 
     return (
       <div className='all-products'>
@@ -25,6 +25,7 @@ class AllProductsDisconected extends Component {
           <Product
             key={product.id}
             {...product}
+            productsOrder={productsOrder}
             handleChange={this.handleQuantityChange}
           />
         )}
@@ -33,7 +34,10 @@ class AllProductsDisconected extends Component {
   }
 }
 
-const mapStateToProps = state => ({ products: state.products })
+const mapStateToProps = state => ({
+  products: state.products,
+  productsOrder: state.productsOrder
+})
 
 const mapDispatchToProps = dispatch => ({
   setOrder: orderArr => dispatch(setProductsOrder(orderArr)),
